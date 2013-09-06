@@ -1,6 +1,12 @@
 ;(function(window, undefined){
 
     var canvas = document.getElementById('rndm');
+
+    // overwrite canvas dimension
+    var vp = RNDM.Browser.viewport();
+    canvas.width = vp.width;
+    canvas.height = vp.height;
+
     var ctx = canvas.getContext("2d");
     
     ctx.imageSmoothingEnabled = true;
@@ -35,7 +41,14 @@
 
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        font.drawStr(RNDM.msg);
+        font.drawStr({
+            msg: RNDM.msg,
+            center: {
+                x: canvas.width / 2,
+                y: canvas.height / 2
+            }
+        });
+
         sky.drawSun({
             x: 100,
             y: 150,

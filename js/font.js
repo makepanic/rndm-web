@@ -42,7 +42,7 @@
 
         var drawChar = function(cfg){
             var character = cfg.character,
-                xOffset = cfg.xOffset;
+                pos = cfg.pos;
 
             // methods
             var randomInRange = RNDM.Random.randomInRange;
@@ -64,8 +64,8 @@
             ctx.beginPath();
 
             // initial moveTo
-            var x = jitterOffset + xOffset * scale + data[0][0] * scale + randomInRange(jitter[0], jitter[1]),
-                y = jitterOffset + data[0][1] * scale + randomInRange(jitter[0], jitter[1]);
+            var x = jitterOffset + pos.x + data[0][0] * scale + randomInRange(jitter[0], jitter[1]),
+                y = jitterOffset + pos.y + data[0][1] * scale + randomInRange(jitter[0], jitter[1]);
             ctx.moveTo(x,y);
 
             var nextAction = 'lineTo';
@@ -75,8 +75,8 @@
                 if(point === null){
                     nextAction = 'moveTo';
                 }else{
-                    x = jitterOffset + xOffset * scale + point[0] * scale + randomInRange(jitter[0], jitter[1]);
-                    y = jitterOffset + point[1] * scale + randomInRange(jitter[0], jitter[1]);
+                    x = jitterOffset + pos.x + point[0] * scale + randomInRange(jitter[0], jitter[1]);
+                    y = jitterOffset + pos.y + point[1] * scale + randomInRange(jitter[0], jitter[1]);
 
                     ctx[nextAction](x, y);
                     nextAction = 'lineTo';
@@ -86,16 +86,28 @@
             ctx.stroke();
         };
 
-        var drawStr = function(str){
-            str = str.toLowerCase();
+        var drawStr = function(cfg){
+            var str = cfg.msg.toLowerCase();
+            var center = cfg.center;
+            var charWidth = scale * 3;
+            var charHeight = scale * 4;
 
             for(var c = 0; c < str.length; c++){
                 var character = str[c];
+
+                var pos = {};
+
+                pos.x = center.x + charWidth * (c - str.length / 2);
+                pos.y = center.y - charHeight / 2;
+
                 drawChar({
                     ctx: ctx,
                     character: character,
                     scale: RNDM.scale,
-                    xOffset: 3 * c
+                    pos: {
+                        x: pos.x,
+                        y: pos.y
+                    }
                 });
             }
 
