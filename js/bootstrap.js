@@ -3,8 +3,7 @@
     window.RNDM = {
         v: '0.0.1',
         msg: 'rndm',
-        gradientOffset: 50,
-        h: 12
+        gradientOffset: 50
     };
 
     if(console.info){
