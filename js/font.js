@@ -4,7 +4,6 @@
     window.RNDM.Font = function(cfg){
         var ctx = cfg.ctx,
             scale = cfg.scale,
-            offsets = cfg.offsets,
             jitter = cfg.jitter,
             color = cfg.color;
 
@@ -87,10 +86,13 @@
         };
 
         var drawStr = function(cfg){
+            var color = cfg.color;
             var str = cfg.msg.toLowerCase();
             var center = cfg.center;
             var charWidth = scale * 3;
             var charHeight = scale * 4;
+
+            ctx.strokeStyle = 'rgb(' + color.r + ',' + color.g + ',' + color.b + ')';
 
             for(var c = 0; c < str.length; c++){
                 var character = str[c];
@@ -111,21 +113,6 @@
                 });
             }
 
-            color[0] += offsets.r;
-            color[1] += offsets.g;
-            color[2] += offsets.b;
-
-            if(color[0] > 228 || color[0] < 27){
-                offsets.r *= -1;
-            }
-            if(color[1] > 228 || color[1] < 27){
-                offsets.g *= -1;
-            }
-            if(color[2] > 228 || color[2] < 27){
-                offsets.b *= -1;
-            }
-
-            ctx.strokeStyle = 'rgb(' + color.join(',') + ')';
         };
 
         return {

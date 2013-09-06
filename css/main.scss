@@ -94,7 +94,7 @@ textarea {
    ========================================================================== */
 
 
-$contentHeight: 120px;
+$contentHeight: 25px;
 $contentWidth: 270px;
 $linkColor: #555;
 $backgroundColor: #fff;
@@ -124,8 +124,23 @@ body{
   margin: (-$contentHeight)/2 auto auto (-$contentWidth)/2;
 }
 
+h1{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .links{
   margin: 0;
+  margin-top: 35px;
   padding: 0;
   text-align: center;
   list-style: none;
@@ -135,14 +150,25 @@ body{
   }
 
   a{
+    color: transparent;
+    display: block;
     padding: 10px 20px;
     border: 0;
-    border-bottom: 1px dashed transparent;
-    color: $linkColor;
+    border-bottom: 0;
     text-decoration: none;
 
     &:hover{
-      border-color: $linkColor;
+    }
+  }
+}
+
+.no-js{
+  h1{
+    color: $linkColor;
+  }
+  .links{
+    a{
+      color: $linkColor;
     }
   }
 }

@@ -91,27 +91,44 @@ body {
 
 .content {
   width: 270px;
-  height: 120px;
+  height: 25px;
   position: absolute;
   left: 50%;
   top: 50%;
-  margin: -60px auto auto -135px; }
+  margin: -12.5px auto auto -135px; }
+
+h1 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 .links {
   margin: 0;
+  margin-top: 35px;
   padding: 0;
   text-align: center;
   list-style: none; }
   .links li {
     display: inline-block; }
   .links a {
+    color: transparent;
+    display: block;
     padding: 10px 20px;
     border: 0;
-    border-bottom: 1px dashed transparent;
-    color: #555555;
+    border-bottom: 0;
     text-decoration: none; }
-    .links a:hover {
-      border-color: #555555; }
+
+.no-js h1 {
+  color: #555555; }
+.no-js .links a {
+  color: #555555; }
 
 /* ==========================================================================
    Helper classes

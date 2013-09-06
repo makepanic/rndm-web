@@ -2,36 +2,18 @@
 
 
     window.RNDM.Orbit = function(cfg){
-        var ctx = cfg.ctx,
-            scale = cfg.scale,
-            jitter = cfg.radius;
-
-        var randomInRange = RNDM.Random.randomInRange;
+        var radius = cfg.radius;
+        var center = cfg.center;
 
         var getPos = function(percent){
-            var x = cfg.x,
-                y = cfg.y,
-                points = cfg.points,
-                radius = cfg.radius,
-                rMul = cfg.rMul;
+            var t = 2 * Math.PI * (percent);
+            var newX = Math.round(center.x + radius * Math.cos(t));
+            var newY = Math.round(center.y + radius * Math.sin(t));
 
-            ctx.beginPath();
-
-            var offset = rMul * Date.now() / 1E3;
-
-            for(var i = 0; i < points + 1; i++){
-
-                var t = 2 * Math.PI * (i + offset) / points;
-                var newX = Math.round(x + radius * Math.cos(t));
-                var newY = Math.round(y + radius * Math.sin(t));
-
-                newX += randomInRange(jitter[0], jitter[1]);
-                newY += randomInRange(jitter[0], jitter[1]);
-
-                ctx.lineTo(newX, newY);
-            }
-
-            ctx.stroke();
+            return {
+                x: newX,
+                y: newY
+            };
         };
 
         return {
